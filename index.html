@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Gabriel Manoá | Cirurgião-Dentista</title>
+  <meta name="description" content="Dr. Gabriel Manoá - Cirurgião-Dentista. Atendimento humanizado com foco em conforto, qualidade e resultados que devolvem sua confiança. Agende sua consulta." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'navy': '#0D1B2A',
+            'navy-medium': '#1B263B',
+            'gold': '#D4AF37',
+            'gold-light': '#E8C547',
+            'off-white': '#F8F9FA',
+          },
+          fontFamily: {
+            'playfair': ['"Playfair Display"', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stagger children */
+    .stagger-children > *:nth-child(1) { transition-delay: 0s; }
+    .stagger-children > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger-children > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger-children > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger-children > *:nth-child(5) { transition-delay: 0.4s; }
+
+    /* Gold shimmer */
+    .gold-shimmer {
+      background: linear-gradient(90deg, #D4AF37 0%, #E8C547 50%, #D4AF37 100%);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+
+    /* Floating WhatsApp pulse */
+    .whatsapp-float {
+      animation: float-pulse 2s ease-in-out infinite;
+    }
+    @keyframes float-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+    }
+
+    /* Navbar backdrop */
+    .navbar-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Hero parallax-like gradient overlay */
+    .hero-gradient {
+      background: linear-gradient(135deg, #0D1B2A 0%, #1B263B 50%, #0D1B2A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-gradient::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(to top, #F8F9FA 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(13, 27, 42, 0.15);
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(13, 27, 42, 0.12);
+    }
+
+    /* Differential icon */
+    .diff-icon {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .diff-icon:hover {
+      transform: scale(1.08);
+    }
+
+    /* CTA glow */
+    .cta-glow {
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.15), 0 0 120px rgba(212, 175, 55, 0.05);
+    }
+
+    /* Gold underline decoration */
+    .gold-underline {
+      position: relative;
+      display: inline-block;
+    }
+    .gold-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      border-radius: 2px;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu.open {
+      max-height: 400px;
+    }
+
+    /* Star rating color */
+    .star-gold { color: #D4AF37; }
+  </style>
+</head>
+
+<body class="bg-off-white text-navy antialiased">
+
+  <!-- ========== NAVBAR ========== -->y
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 navbar-blur bg-navy/90 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-full bg-gold/20 flex items-center justify-center border border-gold/40 group-hover:bg-gold/30 transition-colors duration-300">
+            <span class="text-gold font-playfair font-bold text-sm">GM</span>
+          </div>
+          <div class="hidden sm:block">
+            <span class="text-white font-playfair font-semibold text-lg">Dr. Gabriel</span>
+            <span class="text-gold font-playfair font-semibold text-lg ml-1">Manoá</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#sobre" class="text-white/70 hover:text-gold text-sm font-medium transition-colors duration-300">Sobre</a>
+          <a href="#servicos" class="text-white/70 hover:text-gold text-sm font-medium transition-colors duration-300">Serviços</a>
+          <a href="#diferenciais" class="text-white/70 hover:text-gold text-sm font-medium transition-colors duration-300">Diferenciais</a>
+          <a href="#depoimentos" class="text-white/70 hover:text-gold text-sm font-medium transition-colors duration-300">Depoimentos</a>
+          <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+             class="bg-gold hover:bg-gold-light text-navy font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-gold/25">
+            Agendar Consulta
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="menu-toggle" class="md:hidden text-white/80 hover:text-gold transition-colors" aria-label="Abrir menu">
+          <svg id="menu-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="flex flex-col gap-1 pb-4">
+          <a href="#sobre" class="mobile-link text-white/70 hover:text-gold hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300">Sobre</a>
+          <a href="#servicos" class="mobile-link text-white/70 hover:text-gold hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300">Serviços</a>
+          <a href="#diferenciais" class="mobile-link text-white/70 hover:text-gold hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300">Diferenciais</a>
+          <a href="#depoimentos" class="mobile-link text-white/70 hover:text-gold hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300">Depoimentos</a>
+          <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+             class="bg-gold hover:bg-gold-light text-navy font-semibold text-sm px-4 py-3 rounded-lg text-center transition-all duration-300 mt-2">
+            Agendar Consulta
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="hero" class="hero-gradient min-h-screen flex items-center pt-16 md:pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-12 md:py-20">
+        <!-- Text -->
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-4 py-1.5 mb-6">
+            <span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
+            <span class="text-gold text-xs font-medium tracking-wide uppercase">Cirurgião-Dentista</span>
+          </div>
+          <h1 class="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            Seu sorriso merece um cuidado
+            <span class="gold-shimmer">especializado</span>
+            e humanizado.
+          </h1>
+          <p class="text-white/60 text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0">
+            Atendimento odontológico com foco em conforto, qualidade e resultados que devolvem sua confiança.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+               class="bg-gold hover:bg-gold-light text-navy font-semibold px-8 py-4 rounded-full text-sm transition-all duration-300 hover:shadow-lg hover:shadow-gold/30 flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Agendar Consulta
+            </a>
+            <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+               class="border border-white/20 hover:border-gold/50 text-white hover:text-gold px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Falar pelo WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[460px] lg:h-[460px]">
+            <!-- Decorative rings -->
+            <div class="absolute inset-0 rounded-full border-2 border-gold/10 animate-pulse"></div>
+            <div class="absolute inset-4 rounded-full border border-gold/20"></div>
+            <!-- Image -->
+            <div class="absolute inset-8 rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl shadow-gold/10">
+              <img src="assets/images/DR.GAB1.jpeg" alt="Dr. Gabriel Manoá" class="w-full h-full object-cover" />
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-navy-medium/90 border border-gold/30 rounded-2xl px-5 py-3 backdrop-blur-sm shadow-xl">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gold/20 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div>
+                  <p class="text-white text-xs font-semibold">Profissional</p>
+                  <p class="text-gold text-[10px]">CRO Registrado</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SOBRE ========== -->
+  <section id="sobre" class="py-20 md:py-28 bg-off-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Image -->
+        <div class="reveal-left relative order-2 lg:order-1">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-navy/10">
+            <img src="assets/images/dr-gab2.jpeg" alt="Dr. Gabriel Manoá no Consultório" class="w-full h-[350px] sm:h-[450px] object-cover object-top" />
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent"></div>
+          </div>
+          <!-- Floating card -->
+          <div class="absolute -bottom-6 -right-4 sm:right-6 bg-white rounded-2xl p-5 shadow-xl border border-gray-100">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              <div>
+                <p class="text-navy font-semibold text-sm">Atendimento</p>
+                <p class="text-navy/50 text-xs">Humanizado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal-right order-1 lg:order-2">
+          <span class="inline-block text-gold text-xs font-semibold tracking-widest uppercase mb-4">Sobre</span>
+          <h2 class="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-6 leading-tight">
+            Conheça o Dr. Gabriel <span class="text-gold">Manoá</span>
+          </h2>
+          <div class="w-16 h-1 bg-gradient-to-r from-gold to-gold-light rounded-full mb-8"></div>
+          <p class="text-navy/60 text-base sm:text-lg leading-relaxed mb-6">
+            Dr. Gabriel Manoá é cirurgião-dentista dedicado a oferecer um atendimento humanizado, buscando sempre proporcionar <strong class="text-navy/80">conforto, segurança e excelência</strong> em cada tratamento.
+          </p>
+          <p class="text-navy/60 text-base sm:text-lg leading-relaxed mb-8">
+            Seu compromisso é cuidar da saúde bucal dos pacientes com <strong class="text-navy/80">técnicas modernas e atenção individualizada</strong>.
+          </p>
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <p class="font-playfair text-2xl sm:text-3xl font-bold text-gold">+500</p>
+              <p class="text-navy/50 text-xs mt-1">Pacientes Atendidos</p>
+            </div>
+            <div class="text-center p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <p class="font-playfair text-2xl sm:text-3xl font-bold text-gold">5★</p>
+              <p class="text-navy/50 text-xs mt-1">Avaliação Google</p>
+            </div>
+            <div class="text-center p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+              <p class="font-playfair text-2xl sm:text-3xl font-bold text-gold">100%</p>
+              <p class="text-navy/50 text-xs mt-1">Comprometimento</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVIÇOS ========== -->
+  <section id="servicos" class="py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="inline-block text-gold text-xs font-semibold tracking-widest uppercase mb-4">Nossos Serviços</span>
+        <h2 class="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
+          Tratamentos <span class="text-gold">Especializados</span>
+        </h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-gold to-gold-light rounded-full mx-auto mb-6"></div>
+        <p class="text-navy/50 text-base sm:text-lg max-w-2xl mx-auto">
+          Oferecemos uma gama completa de serviços odontológicos para cuidar do seu sorriso com excelência.
+        </p>
+      </div>
+
+      <!-- Service Cards Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+        <!-- Card 1 -->
+        <div class="service-card reveal-scale bg-off-white rounded-3xl p-7 sm:p-8 border border-gray-100 group cursor-default">
+          <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm">
+            <img src="assets/images/service_restauracao.png" alt="Restaurações Estéticas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-playfair text-xl font-bold text-navy mb-3">Restaurações Estéticas e Reabilitadoras</h3>
+          <p class="text-navy/50 text-sm leading-relaxed">
+            Recuperação da estética e funcionalidade dos dentes, proporcionando um sorriso mais saudável e harmonioso.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card reveal-scale bg-off-white rounded-3xl p-7 sm:p-8 border border-gray-100 group cursor-default">
+          <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm">
+            <img src="assets/images/service_extracao.png" alt="Extrações Simples" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-playfair text-xl font-bold text-navy mb-3">Extrações Simples e de Terceiros Molares</h3>
+          <p class="text-navy/50 text-sm leading-relaxed">
+            Procedimentos realizados com segurança e conforto, visando a saúde e o bem-estar do paciente.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card reveal-scale bg-off-white rounded-3xl p-7 sm:p-8 border border-gray-100 group cursor-default">
+          <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm">
+            <img src="assets/images/service_urgencia.png" alt="Urgência Odontológica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-playfair text-xl font-bold text-navy mb-3">Urgência Odontológica</h3>
+          <p class="text-navy/50 text-sm leading-relaxed">
+            Atendimento para remoção da dor e resolução de problemas que necessitam de cuidados imediatos.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card reveal-scale bg-off-white rounded-3xl p-7 sm:p-8 border border-gray-100 group cursor-default">
+          <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm">
+            <img src="assets/images/service_endodontia.png" alt="Endodontia (Canal)" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-playfair text-xl font-bold text-navy mb-3">Endodontia (Canal)</h3>
+          <p class="text-navy/50 text-sm leading-relaxed">
+            Tratamento para preservar dentes comprometidos e eliminar dores causadas por infecções.
+          </p>
+          <div class="mt-4 flex items-start gap-2 bg-gold/5 rounded-xl p-3">
+            <svg class="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-navy/50 text-xs">Procedimento realizado mediante avaliação prévia.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card reveal-scale bg-off-white rounded-3xl p-7 sm:p-8 border border-gray-100 group cursor-default sm:col-span-2 lg:col-span-1">
+          <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden shadow-sm">
+            <img src="assets/images/service_clareamento.png" alt="Clareamento Dental" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="font-playfair text-xl font-bold text-navy mb-3">Clareamento Dental</h3>
+          <p class="text-navy/50 text-sm leading-relaxed">
+            Clareamento em consultório ou caseiro para um sorriso mais branco e natural.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DIFERENCIAIS ========== -->
+  <section id="diferenciais" class="py-20 md:py-28 bg-navy relative overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 left-0 w-64 h-64 bg-gold/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-gold/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="inline-block text-gold text-xs font-semibold tracking-widest uppercase mb-4">Por que nos escolher</span>
+        <h2 class="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Nossos <span class="text-gold">Diferenciais</span>
+        </h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-gold to-gold-light rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Differentials Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 stagger-children">
+        <!-- Item 1 -->
+        <div class="diff-icon reveal-scale text-center group">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-300">
+            <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <p class="text-white/80 text-sm font-medium">Atendimento<br/>Humanizado</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="diff-icon reveal-scale text-center group">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-300">
+            <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <p class="text-white/80 text-sm font-medium">Equipamentos<br/>Modernos</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="diff-icon reveal-scale text-center group">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-300">
+            <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+          <p class="text-white/80 text-sm font-medium">Ambiente<br/>Acolhedor</p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="diff-icon reveal-scale text-center group">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-300">
+            <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <p class="text-white/80 text-sm font-medium">Saúde e Estética<br/>do Sorriso</p>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="diff-icon reveal-scale text-center group col-span-2 sm:col-span-1">
+          <div class="w-20 h-20 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-gold/10 group-hover:border-gold/30 transition-all duration-300">
+            <svg class="w-9 h-9 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </div>
+          <p class="text-white/80 text-sm font-medium">Tratamentos<br/>Personalizados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DEPOIMENTOS ========== -->
+  <section id="depoimentos" class="py-20 md:py-28 bg-off-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <span class="inline-block text-gold text-xs font-semibold tracking-widest uppercase mb-4">Depoimentos</span>
+        <h2 class="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-navy mb-4">
+          O que dizem nossos <span class="text-gold">pacientes</span>
+        </h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-gold to-gold-light rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Testimonial Cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal-scale bg-white rounded-3xl p-7 sm:p-8 border border-gray-100 shadow-sm">
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+          </div>
+          <p class="text-navy/70 text-sm leading-relaxed mb-6 italic">
+            "Excelente atendimento e muito atencioso. Me senti muito acolhida desde a recepção. O Dr. Gabriel é um profissional incrível. Recomendo de olhos fechados!"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+              <span class="text-gold font-semibold text-sm">MC</span>
+            </div>
+            <div>
+              <p class="text-navy font-semibold text-sm">Maria C.</p>
+              <p class="text-navy/40 text-xs">Paciente</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal-scale bg-white rounded-3xl p-7 sm:p-8 border border-gray-100 shadow-sm">
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+          </div>
+          <p class="text-navy/70 text-sm leading-relaxed mb-6 italic">
+            "Me senti muito confortável durante todo o tratamento. O ambiente é acolhedor e o doutor explica cada etapa com paciência. Nota 10!"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+              <span class="text-gold font-semibold text-sm">JS</span>
+            </div>
+            <div>
+              <p class="text-navy font-semibold text-sm">João S.</p>
+              <p class="text-navy/40 text-xs">Paciente</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal-scale bg-white rounded-3xl p-7 sm:p-8 border border-gray-100 shadow-sm sm:col-span-2 lg:col-span-1">
+          <div class="flex gap-1 mb-5">
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+            <span class="star-gold text-lg">★</span>
+          </div>
+          <p class="text-navy/70 text-sm leading-relaxed mb-6 italic">
+            "Fiz meu clareamento dental e o resultado ficou maravilhoso! Super profissional e cuidadoso. Meu sorriso nunca esteve tão bonito."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
+              <span class="text-gold font-semibold text-sm">AF</span>
+            </div>
+            <div>
+              <p class="text-navy font-semibold text-sm">Ana F.</p>
+              <p class="text-navy/40 text-xs">Paciente</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA SECTION ========== -->
+  <section id="cta" class="py-20 md:py-28 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="reveal cta-glow bg-gradient-to-br from-navy to-navy-medium rounded-3xl p-10 sm:p-14 lg:p-20 text-center relative overflow-hidden">
+        <!-- Decorative -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full translate-x-1/3 -translate-y-1/3 blur-2xl"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full -translate-x-1/3 translate-y-1/3 blur-2xl"></div>
+
+        <div class="relative z-10">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-8">
+            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <h2 class="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Agende sua <span class="text-gold">avaliação</span>
+          </h2>
+          <p class="text-white/50 text-base sm:text-lg max-w-xl mx-auto mb-10">
+            Cuide do seu sorriso com um atendimento dedicado e personalizado. Estamos prontos para te receber.
+          </p>
+          <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-navy font-bold px-10 py-4 rounded-full text-base transition-all duration-300 hover:shadow-xl hover:shadow-gold/30 hover:-translate-y-0.5">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center border border-gold/40">
+              <span class="text-gold font-playfair font-bold text-sm">GM</span>
+            </div>
+            <div>
+              <p class="text-white font-playfair font-semibold text-lg">Dr. Gabriel Manoá</p>
+              <p class="text-white/40 text-xs">Cirurgião-Dentista</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-sm leading-relaxed mt-4 max-w-xs">
+            Atendimento odontológico humanizado com foco em conforto, qualidade e resultados.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Links Rápidos</h4>
+          <div class="flex flex-col gap-2.5">
+            <a href="#sobre" class="text-white/40 hover:text-gold text-sm transition-colors duration-300">Sobre</a>
+            <a href="#servicos" class="text-white/40 hover:text-gold text-sm transition-colors duration-300">Serviços</a>
+            <a href="#diferenciais" class="text-white/40 hover:text-gold text-sm transition-colors duration-300">Diferenciais</a>
+            <a href="#depoimentos" class="text-white/40 hover:text-gold text-sm transition-colors duration-300">Depoimentos</a>
+          </div>
+        </div>
+
+        <!-- Contact / Social -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Contato</h4>
+          <div class="flex flex-col gap-3">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/dr.gabriel_manoa?igsh=cjBuYzkzaXZ4cHRz" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white/40 hover:text-gold transition-colors duration-300 group">
+              <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-gold/10 transition-colors duration-300">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </div>
+              <span class="text-sm">Instagram</span>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white/40 hover:text-gold transition-colors duration-300 group">
+              <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-gold/10 transition-colors duration-300">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              </div>
+              <span class="text-sm">WhatsApp</span>
+            </a>
+            <!-- Location -->
+            <a href="https://www.google.com/maps/search/Cl%C3%ADnica+Totallis+Avenida+Godofredo+Maciel+88+Fortaleza" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white/40 hover:text-gold transition-colors duration-300 group">
+              <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-gold/10 transition-colors duration-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <span class="text-sm block">Clínica Totallis</span>
+                <span class="text-xs text-white/25 block">Av. Godofredo Maciel, 88 – Fortaleza</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-white/5 mt-10 pt-8 text-center">
+        <p class="text-white/30 text-xs">© 2026 Dr. Gabriel Manoá — Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== FLOATING WHATSAPP BUTTON ========== -->
+  <a href="https://wa.me/qr/NMYQJ2IEXR3LC1?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer"
+     class="whatsapp-float fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#20BA5C] rounded-full flex items-center justify-center shadow-lg transition-colors duration-300"
+     aria-label="Fale pelo WhatsApp">
+    <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ---- Mobile Menu Toggle ----
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+
+    // ---- Scroll Reveal ----
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ---- Navbar scroll effect ----
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > 100) {
+        navbar.classList.add('shadow-lg', 'shadow-navy/20');
+      } else {
+        navbar.classList.remove('shadow-lg', 'shadow-navy/20');
+      }
+
+      lastScroll = currentScroll;
+    });
+
+    // ---- Smooth scroll for all anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const navHeight = navbar.offsetHeight;
+          const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
