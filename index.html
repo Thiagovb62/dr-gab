@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth" style="overflow-x:hidden;max-width:100vw;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,6 +35,7 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { max-width: 100vw; overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; }
 
     /* Scroll reveal animations */
@@ -58,7 +59,7 @@
     }
     .reveal-right {
       opacity: 0;
-      transform: translateX(60px);
+      transform: translateX(40px);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal-right.active {
